@@ -1,0 +1,56 @@
+ <nav class="navbar">
+  {{nome}}
+ </nav>
+ 
+
+<form #frm="ngForm" (submit)="adicionar(frm)">
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h1>Cadastro de Pessoas</h1>
+    </div>
+
+    <div class="ui-g-6 ui-fluid">
+        <label>Nome</label>
+        <input pInputText name="nome" ngModel [required]="true">
+    </div>
+
+    <div class="ui-g-6 ui-fluid">
+        <label>Idade</label>
+        <p-inputMask name="idade" mask="99" ngModel [required]="true"></p-inputMask>
+
+    </div>
+
+    <div class="ui-g-6 ui-fluid">
+        <label>Data de Nascimento</label>
+        <p-calendar name="dataNascimento" dateFormat="dd/mm/yy" ngModel [required]="true"></p-calendar>
+    </div>
+
+    
+    <div class="ui-g-12">
+        <button pButton type="submit" label="Adicionar" [disabled]="frm.invalid"></button>
+    </div>
+</div>
+</form>    
+
+
+
+
+<div class="ui-g">
+    <div class="ui-g-12">
+         <p-dataTable [value]="pessoas">
+             <p-column field="nome" header="Nome"></p-column>
+             <p-column field="idade" header="Idade"></p-column>
+             <p-column header="Data de Nascimento">
+                 <ng-template pTemplate="body" let-pes="rowData">
+                      {{pes.dataNascimento | date: 'dd/MM/yyyy'}}
+                 </ng-template>
+             </p-column>
+         </p-dataTable>
+    </div>
+</div>
+  
+
+
+
+
+
